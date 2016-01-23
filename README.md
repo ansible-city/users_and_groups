@@ -1,7 +1,7 @@
 # Users and Roles
 
-Master: ![Build Status](https://travis-ci.org/ansible-city/users_and_groups.svg?branch=master)  
-Develop: ![Build Status](https://travis-ci.org/ansible-city/users_and_groups.svg?branch=develop)
+Master: [![Build Status](https://travis-ci.org/ansible-city/users_and_groups.svg?branch=master)](https://travis-ci.org/ansible-city/users_and_groups)  
+Develop: [![Build Status](https://travis-ci.org/ansible-city/users_and_groups.svg?branch=develop)](https://travis-ci.org/ansible-city/users_and_groups)
 
 * [ansible.cfg](#ansible-cfg)
 * [Dependencies](#dependencies)

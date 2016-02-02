@@ -4,7 +4,7 @@
   hosts: all
 
   roles:
-    - name: ansible-city.users_and_groups
+    - role: ansible-city.users_and_groups
       users_and_groups:
         groups:
           - name: lorem

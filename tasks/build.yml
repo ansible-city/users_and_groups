@@ -15,6 +15,7 @@
     group: "{{ item.group | default(omit) }}"
     groups: "{{ item.groups | default([ ]) | join(',') | default(omit) }}"
     name: "{{ item.name }}"
+    password: "{{ item.password | default(omit) }}"
     shell: "{{ item.shell | default('/bin/bash') }}"
     state: "{{ item.state | default(omit) }}"
   with_items: users_and_groups.users

@@ -17,6 +17,7 @@
               - lorem
             ssh_key: ./lorem.ipsum.pub
           - name: dolor.ament
+            password: $6$xWEcHT7XQyoM8BcG$8PNUEIk/W0HabKwuOKdqRihwDnzDIS9mvKWzUzh2JZLG2/YJzedeFNT2o2nbXD0JqoKenebkF0lRPc/wX.NzM0
             groups:
               - ipsum
           - name: no.extra.group
@@ -26,5 +27,11 @@
       become: yes
       become_user: lorem.ipsum
       shell: cat /home/lorem.ipsum/.ssh/authorized_keys | grep 'ssh-rsa AAAAB3NzaC1yc2E'
+      tags:
+        - assert
+
+    - name: User dolor.ament has a password
+      become: yes
+      command: grep 'dolor.ament:$6$xWEcHT7XQyoM8BcG$8PNUEIk/W0HabKwuOKdqRihwDnzDIS9mvKWzUzh2JZLG2/YJzedeFNT2o2nbXD0JqoKenebkF0lRPc/wX.NzM0' /etc/shadow
       tags:
         - assert

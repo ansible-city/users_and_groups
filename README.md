@@ -99,3 +99,27 @@ group|host vars file.
       users_and_groups:
         users: "{{ developers }}"
 ```
+
+Add selected group to sudoers
+
+```YAML
+- name: Configure User Access
+  hosts: sandbox
+
+  vars_files:
+    - "vars/sandbox/users.yml"
+
+  roles:
+    - role: sansible.users_and_groups
+      users_and_groups:
+        groups: "{{ base_image.os_groups }}"
+        users: "{{ base_image.admins + developers }}"
+
+    - role: sansible.users_and_groups
+      users_and_groups:
+        sudoers:
+          - name: wheel
+            user: "%wheel"
+            runas: "ALL=(ALL)"
+            commands: "NOPASSWD: ALL"
+```

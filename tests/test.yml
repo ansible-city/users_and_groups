@@ -20,7 +20,19 @@
             password: $6$xWEcHT7XQyoM8BcG$8PNUEIk/W0HabKwuOKdqRihwDnzDIS9mvKWzUzh2JZLG2/YJzedeFNT2o2nbXD0JqoKenebkF0lRPc/wX.NzM0
             groups:
               - ipsum
+
+    - role: ansible-city.users_and_groups
+      users_and_groups:
+        users:
           - name: no.extra.group
+
+    - role: ansible-city.users_and_groups
+      users_and_groups:
+        sudoers:
+          - name: ipsum
+            user: "%ipsum"
+            runas: "ALL=(ALL)"
+            commands: "NOPASSWD: ALL"
 
   post_tasks:
     - name: User lorem.ipsum should have public key added
@@ -33,5 +45,11 @@
     - name: User dolor.ament has a password
       become: yes
       command: grep 'dolor.ament:$6$xWEcHT7XQyoM8BcG$8PNUEIk/W0HabKwuOKdqRihwDnzDIS9mvKWzUzh2JZLG2/YJzedeFNT2o2nbXD0JqoKenebkF0lRPc/wX.NzM0' /etc/shadow
+      tags:
+        - assert
+
+    - name: Group ipsum added to sudoers
+      become: yes
+      shell: "cat /etc/sudoers.d/ipsum | grep -E 'ipsum\\s+ALL=\\(ALL\\)\\s+NOPASSWD: ALL'"
       tags:
         - assert
